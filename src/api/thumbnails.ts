@@ -33,7 +33,7 @@ export async function handlerUploadThumbnail(cfg: ApiConfig, req: BunRequest) {
 
   if (file.size > MAX_UPLOAD_SIZE) {
     throw new BadRequestError(
-        `Thumbnail file exceeds the maximum allowed size of 10MB`,
+      `Thumbnail file exceeds the maximum allowed size of 10MB`,
     );
   }
 
