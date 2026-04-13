@@ -3,9 +3,18 @@
   "module": "/src/index.ts",
   "type": "module",
   "private": true,
+  "scripts": {
+    "lint": "eslint .",
+    "lint:fix": "eslint . — fix && prettier — write .",
+    "prepare": "lint-staged"
+  },
   "devDependencies": {
+    "@eslint/js": "^10.0.1",
     "@types/bun": "^1.2.7",
-    "@types/jsonwebtoken": "^9.0.9"
+    "@types/jsonwebtoken": "^9.0.9",
+    "eslint": "^10.2.0",
+    "globals": "^17.5.0",
+    "typescript-eslint": "^8.58.1"
   },
   "peerDependencies": {
     "typescript": "^5"
