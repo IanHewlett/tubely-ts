@@ -17,13 +17,8 @@ jobs:
         with:
           bun-version: latest
 
-      - name: Set up Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 22
-
       - name: Install dependencies
         run: bun install
 
       - name: Lint Check
-        run: npm run lint
+        run: bun run lint
