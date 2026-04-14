@@ -20,7 +20,10 @@ describe("handlerUsersCreate", () => {
   test("should create a user successfully with valid email and password", async () => {
     const req = new Request("http://localhost/users", {
       method: "POST",
-      body: JSON.stringify({ email: "test@example.com", password: "password123" }),
+      body: JSON.stringify({
+        email: "test@example.com",
+        password: "password123",
+      }),
     });
 
     const response = await handlerUsersCreate(mockCfg, req);
@@ -41,7 +44,7 @@ describe("handlerUsersCreate", () => {
     });
 
     expect(handlerUsersCreate(mockCfg, req)).rejects.toThrow(
-      new BadRequestError("Email and password are required")
+      new BadRequestError("Email and password are required"),
     );
   });
 
@@ -52,7 +55,7 @@ describe("handlerUsersCreate", () => {
     });
 
     expect(handlerUsersCreate(mockCfg, req)).rejects.toThrow(
-      new BadRequestError("Email and password are required")
+      new BadRequestError("Email and password are required"),
     );
   });
 });

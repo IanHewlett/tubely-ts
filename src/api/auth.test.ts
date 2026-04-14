@@ -15,14 +15,17 @@ mock.module("../db/users", () => ({
 // Mocking dependencies for auth api tests
 mock.module("../auth", () => ({
   checkPasswordHash: async (p: string, h: string) => p === "correct_password",
-  getBearerToken: (headers: Headers) => headers.get("Authorization")?.split(" ")[1],
+  getBearerToken: (headers: Headers) =>
+    headers.get("Authorization")?.split(" ")[1],
   makeJWT: (id: string, secret: string, expires: number) => `jwt_${id}`,
   makeRefreshToken: () => "mock_refresh_token",
 }));
 
 mock.module("../db/users", () => ({
   getUserByEmail: (db: any, email: string) =>
-    email === "existing@example.com" ? { id: "user_1", password: "hashed_password" } : null,
+    email === "existing@example.com"
+      ? { id: "user_1", password: "hashed_password" }
+      : null,
   getUserByRefreshToken: (db: any, token: string) =>
     token === "valid_refresh_token" ? { id: "user_1" } : null,
 }));
@@ -42,7 +45,10 @@ describe("api/auth handlers", () => {
     test("successful login", async () => {
       const req = new Request("http://localhost/login", {
         method: "POST",
-        body: JSON.stringify({ email: "existing@example.com", password: "correct_password" }),
+        body: JSON.stringify({
+          email: "existing@example.com",
+          password: "correct_password",
+        }),
       });
 
       const response = await handlerLogin(mockCfg, req);
@@ -64,9 +70,14 @@ describe("api/auth handlers", () => {
     test("incorrect password", async () => {
       const req = new Request("http://localhost/login", {
         method: "POST",
-        body: JSON.stringify({ email: "existing@example.com", password: "wrong" }),
+        body: JSON.stringify({
+          email: "existing@example.com",
+          password: "wrong",
+        }),
       });
-      expect(handlerLogin(mockCfg, req)).rejects.toThrow(UserNotAuthenticatedError);
+      expect(handlerLogin(mockCfg, req)).rejects.toThrow(
+        UserNotAuthenticatedError,
+      );
     });
   });
 
@@ -85,7 +96,9 @@ describe("api/auth handlers", () => {
       const req = new Request("http://localhost/refresh", {
         headers: { Authorization: "Bearer invalid" },
       });
-      expect(handlerRefresh(mockCfg, req)).rejects.toThrow(UserNotAuthenticatedError);
+      expect(handlerRefresh(mockCfg, req)).rejects.toThrow(
+        UserNotAuthenticatedError,
+      );
     });
   });
 
