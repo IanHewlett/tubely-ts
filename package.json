@@ -6,7 +6,8 @@
   "scripts": {
     "format:check": "prettier --check \"src/**/*.{js,ts,json,css,md}\"",
     "format:write": "prettier --write \"src/**/*.{js,ts,json,css,md}\"",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "prepare": "husky"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
@@ -24,5 +25,12 @@
   },
   "dependencies": {
     "jsonwebtoken": "^9.0.2"
+  },
+  "lint-staged": {
+    "*.{ts,tsx,js,jsx}": [
+      "prettier --write",
+      "eslint --fix",
+      "vitest related"
+    ]
   }
 }
