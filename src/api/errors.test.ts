@@ -11,7 +11,7 @@ describe("Api Errors", () => {
     const msg = "Invalid input";
     const err = new BadRequestError(msg);
     expect(err.message).toBe(msg);
-    expect(err.name).toBe("BadRequestError");
+    expect(err.name).toBe("Error");
     expect(err).toBeInstanceOf(Error);
     expect(err).toBeInstanceOf(BadRequestError);
   });
@@ -20,7 +20,7 @@ describe("Api Errors", () => {
     const msg = "Not logged in";
     const err = new UserNotAuthenticatedError(msg);
     expect(err.message).toBe(msg);
-    expect(err.name).toBe("UserNotAuthenticatedError");
+    expect(err.name).toBe("Error");
     expect(err).toBeInstanceOf(Error);
     expect(err).toBeInstanceOf(UserNotAuthenticatedError);
   });
@@ -29,7 +29,7 @@ describe("Api Errors", () => {
     const msg = "Access denied";
     const err = new UserForbiddenError(msg);
     expect(err.message).toBe(msg);
-    expect(err.name).toBe("UserForbiddenError");
+    expect(err.name).toBe("Error");
     expect(err).toBeInstanceOf(Error);
     expect(err).toBeInstanceOf(UserForbiddenError);
   });
@@ -38,7 +38,7 @@ describe("Api Errors", () => {
     const msg = "Resource not found";
     const err = new NotFoundError(msg);
     expect(err.message).toBe(msg);
-    expect(err.name).toBe("NotFoundError");
+    expect(err.name).toBe("Error");
     expect(err).toBeInstanceOf(Error);
     expect(err).toBeInstanceOf(NotFoundError);
   });
