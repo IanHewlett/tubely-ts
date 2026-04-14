@@ -21,7 +21,7 @@ jobs:
         run: bun install
 
       - name: Format Check
-        run: npm run format:check
+        run: bun run format:check
 
       - name: Lint Check
         run: bun run lint
